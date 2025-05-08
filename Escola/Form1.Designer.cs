@@ -39,6 +39,7 @@
             txtTelefone = new TextBox();
             txtId = new TextBox();
             btnCadastrar = new Button();
+            btnExcluir = new Button();
             SuspendLayout();
             // 
             // btnConexao
@@ -134,11 +135,22 @@
             btnCadastrar.UseVisualStyleBackColor = true;
             btnCadastrar.Click += btnCadastrar_Click;
             // 
+            // btnExcluir
+            // 
+            btnExcluir.Location = new Point(133, 313);
+            btnExcluir.Name = "btnExcluir";
+            btnExcluir.Size = new Size(75, 23);
+            btnExcluir.TabIndex = 4;
+            btnExcluir.Text = "Excluir";
+            btnExcluir.UseVisualStyleBackColor = true;
+            btnExcluir.Click += btnExcluir_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnExcluir);
             Controls.Add(btnCadastrar);
             Controls.Add(txtTelefone);
             Controls.Add(txtEmail);
@@ -151,6 +163,7 @@
             Controls.Add(label1);
             Controls.Add(btnConexao);
             Name = "Form1";
+            Text = "Excluir";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -168,5 +181,6 @@
         private TextBox txtTelefone;
         private TextBox txtId;
         private Button btnCadastrar;
+        private Button btnExcluir;
     }
 }

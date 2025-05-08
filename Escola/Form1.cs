@@ -32,5 +32,16 @@ namespace Escola
             txtTelefone.Clear();
             txtId.Focus();
         }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            //excluir
+            DBconnections dados = new DBconnections();
+            dados.Excluir(Convert.ToInt32(txtId.Text));
+            MessageBox.Show("Excluido com sucesso");
+            txtNome.Focus();
+
+
+        }
     }
 }

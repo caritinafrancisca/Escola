@@ -7,22 +7,25 @@ using MySql.Data.MySqlClient;
 using System.Configuration;
 using System.Data;
 using System.Drawing.Text;
+using System.Security.Cryptography.X509Certificates;
+using System.Runtime.InteropServices;
+using System.Reflection.Metadata;
 namespace Escola.Dados
 {
     public class DBconnections
     {
-      
-        
-            //configura o uso da string de conexão
-            private static string connectionString = ConfigurationManager.ConnectionStrings["MysqlConnection"].ConnectionString;
-            public static MySqlConnection GetConnection() 
-            {
-            return new MySqlConnection(connectionString);
-            }
-            //criar
-            public void Cadastrar(int idalunos,string nome, string email, string telefone)
+
+
+        //configura o uso da string de conexão
+        private static string connectionString = ConfigurationManager.ConnectionStrings["MysqlConnection"].ConnectionString;
+        public static MySqlConnection GetConnection()
         {
-                try
+            return new MySqlConnection(connectionString);
+        }
+        //criar
+        public void Cadastrar(int idalunos, string nome, string email, string telefone)
+        {
+            try
             {
                 MySqlConnection mySqlConnection = DBconnections.GetConnection();
                 using MySqlConnection conn = mySqlConnection;
@@ -38,12 +41,30 @@ namespace Escola.Dados
                 cmd.ExecuteNonQuery();
                 conn.Close();
 
-   
+
             }
             catch (Exception ex)
             {
                 string Erro = ex.Message.ToString().Trim();
             }
+        }
+        public void Excluir(int idalunos)
+        {
+            try
+            {
+                MySqlConnection mySqlConnection = DBconnections.GetConnection();
+                using MySqlConnection conn = mySqlConnection;
+                conn.Open();
+                string query = "DELETE FROM alunos WHERE idalunos=@idalunos";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@idalunos", idalunos);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                string Erro = ex.Message.ToString().Trim();
+             }
 
         }
     }
